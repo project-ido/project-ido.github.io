@@ -174,8 +174,8 @@
           let fonts_loaders = fonts.map(function(font) { return new FontFaceObserver(font); });
           form.addEventListener('submit', function() {
             event.preventDefault(); event.stopPropagation();
-            let fonts_loader  = Promise.map(fonts_loaders, function(loader){ return loader.load() });
-            fonts_loader.then(function() { canvas_download(); });
+            // let fonts_loader  = Promise.map(fonts_loaders, function(loader){ return loader.load() });
+            // fonts_loader.then(function() { canvas_download(); });
             return false;
           });
           form.input.addEventListener('input', update);

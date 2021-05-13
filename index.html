@@ -224,9 +224,7 @@
                 //download(canvas.toDataURL(), 'download.png', 'text/png');
                 Kakao.Link.sendCustom({
                   templateId: 53490,
-                  templateArgs: {
-                    THU: 'https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png',
-                  },
+                  templateArgs: { THU: canvas.toDataURL(), },
                 })
                 //window.playground.scrollIntoView();
               }

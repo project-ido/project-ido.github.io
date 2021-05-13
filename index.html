@@ -221,10 +221,18 @@
             html2canvas(view, {
               backgroundColor: null,
               onrendered: function(canvas) {
-                //download(canvas.toDataURL(), 'download.png', 'text/png');
-                Kakao.Link.sendCustom({
-                  templateId: 53490,
-                  templateArgs: { THU: canvas.toDataURL(), },
+                let filename = 'download.png';
+                canvas.toBlob((blob) => {
+                  let formData  = new FormData();
+                  formData.append('image', blob);
+                  fetch(`https://api.imgbb.com/1/upload?key=57b2a25ff39deee44d49860a492bc314`, {
+                    method: 'POST', body: formData,
+                  }).then(r=>r.json()).then((resp) => {
+                    Kakao.Link.sendCustom({
+                      templateId: 53490,
+                      templateArgs: { THU: resp.data.url, },
+                    })
+                  });
                 })
                 //window.playground.scrollIntoView();
               }
